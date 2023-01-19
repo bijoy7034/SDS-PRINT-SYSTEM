@@ -31,7 +31,6 @@ $data3= mysqli_fetch_assoc($result3);
 
 ?>
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -148,7 +147,27 @@ include 'nav.php';
 
   
  <br><br>
-  <center><h5><b>All Transactions</b></h5></center>
+ <form action="dash.php?set=dash" method="post">
+  <div class="container px-5" style="display: flex; justify-content:space-between">
+  <h5 style="color: #b22024;"><b>Student Details</b></h5>
+    <div style="min-width:max-content; display: flex; align-items:center; justify-content:space-around;">
+    <div class="input-group">
+      
+  <div class="form-outline">
+    <input id="search-input" min='1/1/2023' name="date" type="date" id="form1" class="form-control" />
+    <label class="form-label" for="form1">Select date</label>
+  </div>
+  <button id="search-button" type="submit" name="search" class="btn text-light" style="background-color: #b22024;">
+    <i class="fas fa-search"></i>
+  </button>
+  
+</div><button name="reset" class="btn btn-floating text-light mx-3" style="background-color: #b22024;"><a class="text-light" href="dash.php?set=dash"><i class="fas fa-undo"></i></a></button>
+    
+    </div>
+
+  </div>
+  </form>
+  
   <div style="height: 450px; overflow-y: auto">
 
 <table class="table">
@@ -167,7 +186,13 @@ include 'nav.php';
   <?php
   $d = date('Y/m/d');
 include "connection.php";
-$query_products = "SELECT * FROM transactions ORDER BY t_id DESC;";
+if(isset($_POST['search'])){
+  $date1 = $_POST['date']; 
+ $query_products = "SELECT * FROM transactions WHERE date = '$date1' ORDER BY t_id DESC;";
+}
+else{
+  $query_products = "SELECT * FROM transactions ORDER BY t_id DESC;";
+}
 $result_products = mysqli_query($con,$query_products);
 
 if($result_products):

@@ -23,7 +23,6 @@ $sql0= "SELECT * FROM `accounts` WHERE adm_no ='$adm';";
     $row = mysqli_fetch_assoc($res0);
     $prev = $row['balance'];
     $bal = $prev - $amt;
-    echo $bal;
     $sql ="UPDATE `accounts` SET `balance`= $bal WHERE adm_no = '$adm';";
     $res1=mysqli_query($con,$sql);
     if($res1){
