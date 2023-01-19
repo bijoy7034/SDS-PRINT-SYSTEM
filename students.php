@@ -54,9 +54,9 @@ if($loggedin_session==NULL) {
 $nav = $_GET['set'];
 include 'nav.php';
 ?>
-<nav
+<nav style="background-color: #b22024;"
        id="main-navbar"
-       class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
+       class="navbar navbar-expand-lg navbar-dark  fixed-top"
        >
     <!-- Container wrapper -->
     <div class="container">
@@ -102,9 +102,9 @@ include 'nav.php';
   <div class="mx-3 pt-4 my-2">
   <form action="students.php?set=stud" method="post">
   <div class="container px-5" style="display: flex; justify-content:space-between">
-  <h5 class="text-primary"><b>Student Details</b></h5>
+  <h5 style="color: #b22024;"><b>Student Details</b></h5>
     <div style="min-width:max-content; display: flex; align-items:center; justify-content:space-around;">
-    <button type="button" class="btn btn-primary mx-4" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+    <button style="background-color: #b22024;" type="button" class="btn mx-4 text-light" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
     Add
 </button>
     <div class="input-group">
@@ -113,7 +113,7 @@ include 'nav.php';
     <input id="search-input" name="key" type="search" id="form1" class="form-control" />
     <label class="form-label" for="form1">Search</label>
   </div>
-  <button id="search-button" type="submit" name="search" class="btn btn-primary">
+  <button id="search-button" type="submit" name="search" class="btn text-light" style="background-color: #b22024;">
     <i class="fas fa-search"></i>
   </button>
 </div>
@@ -202,7 +202,7 @@ if($result_products):
                     endwhile;
                   }else{
                     ?>
-                    <center class="m-5"><img src="pics/notfound.svg" class="img-fluid " width="400px" alt="Not Found">
+                    <center class="m-5"><img src="pics/undraw_not_found.svg" class="img-fluid " width="400px" alt="Not Found">
                   <br><br><b><h4>Not data found!</h4></b></center>
                     <?php
                   };
@@ -270,8 +270,8 @@ if($result_products):
   
       </div>
       <div class="modal-footer">
-        <button type="button"  class="btn btn-secondary" data-mdb-dismiss="modal">Close</button>
-        <button type="Submit" name="submit_stud" class="btn btn-primary">Save</button>
+        <button type="button"  class="btn btn-light" data-mdb-dismiss="modal">Close</button>
+        <button type="Submit" style="background-color: #b22024;" name="submit_stud" class="btn text-light">Save</button>
         </form>
       </div>
     </div>

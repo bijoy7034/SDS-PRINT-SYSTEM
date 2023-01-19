@@ -76,9 +76,9 @@ if(isset($_POST['submit'])){
 $nav = $_GET['set'];
 include 'nav.php';
 ?>
-<nav
+<nav style="background-color: #b22024"
        id="main-navbar"
-       class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
+       class="navbar navbar-expand-lg navbar-dark fixed-top"
        >
     <!-- Container wrapper -->
     <div class="container">
@@ -127,9 +127,9 @@ include 'nav.php';
     <hr class="mx-5">
 
     <div class="container px-5" style="display: flex; justify-content:space-between">
-  <h5 class="text-primary"><b>Admin accounts details</b></h5>
+  <h5 style="color:#b22024"><b>Admin accounts details</b></h5>
     <div style="min-width:max-content; display: flex; align-items:center; justify-content:space-around;">
-    <button type="button" class="btn btn-primary mx-4" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
+    <button type="button" class="btn text-light mx-4" style="background-color: #b22024;" data-mdb-toggle="modal" data-mdb-target="#exampleModal">
     Add
 </button>
   
@@ -197,7 +197,7 @@ endif;
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
   <div class="modal-dialog">
     <div class="modal-content">
-      <div class="modal-header bg-primary text-light">
+      <div class="modal-header text-light" style="background-color: #b22024;">
         <h5 class="modal-title" id="exampleModalLabel">Add User</h5>
         <button type="button" class="btn-close" data-mdb-dismiss="modal" aria-label="Close"></button>
       </div>
@@ -206,24 +206,24 @@ endif;
       <form action="account.php?set=acc" method="post">
   <!-- Email input -->
   <div class="form-outline mb-4">
-    <input type="text" id="form1Example1" name="user" class="form-control" />
+    <input required type="text" id="form1Example1" name="user" class="form-control" />
     <label class="form-label" for="form1Example1">Username</label>
   </div>
 
   <!-- Password input -->
   <div class="form-outline mb-4">
-    <input type="password" name="pass" id="form1Example2" class="form-control" />
+    <input required type="password" name="pass" id="form1Example2" class="form-control" />
     <label class="form-label" for="form1Example2">Create Password</label>
   </div>
   <div class="form-outline mb-4">
-    <input type="password" id="form1Example2" class="form-control" />
+    <input required type="password" id="form1Example2" class="form-control" />
     <label class="form-label" for="form1Example2">Re-enter Password</label>
   </div>
 
   <br>
 
   <!-- Submit button -->
-  <button type="submit" name="submit" class="btn btn-success btn-block">ADD USER</button>
+  <button type="submit" name="submit" class="btn btn-block text-light" style="background-color: #b22024;">ADD USER</button>
 </form>
 <br>
 

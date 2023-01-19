@@ -1,14 +1,14 @@
 <!-- <div class="d-sm-flex justify-content-between align-items-center mx-5">
   <b class="mx-3" style="margin-bottom: 5px;">Transactions (<?php echo date('d/m/Y') ?>)</b> 
   <button type="button" class="btn btn-primary btn-sm btn-rounded">View All transactions</button></div> -->
-<table class="table" style="line-height:5px; background-color:#3B71CA; color:white; font-weight:bold">
+<br><table class="table pt-2" style="line-height:5px;  color:#b22024; font-weight:bold">
 <tbody style="text-align: left;">
     <tr>
-      <td width="100">Id</td>
-      <td width="200">Admission No.</td>
-      <td width="200">Amount</td>
-      <td width="200">Time</td>
-      <td width="200">Date</td>
+      <td width="100"><b>Id</b></td>
+      <td width="200"><b>Admission No.</b></td>
+      <td width="200"><b>Amount</b></td>
+      <td width="200"><b>Time</b></td>
+      <td width="200"><b>Date</b></td>
 </tr>
   </tbody>
 </table>

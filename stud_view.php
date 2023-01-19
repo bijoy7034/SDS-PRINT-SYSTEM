@@ -61,9 +61,9 @@ $data2= mysqli_fetch_assoc($result2);
 $nav = $_GET['set'];
 include 'nav.php';
 ?>
-<nav
+<nav style="background-color: #b22024;"
        id="main-navbar"
-       class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
+       class="navbar navbar-expand-lg navbar-dark  fixed-top"
        >
     <!-- Container wrapper -->
     <div class="container">
@@ -115,9 +115,9 @@ include 'nav.php';
  <div class="card testimonial-card mx-5" style="width: 400px;">
       <div class="card-up aqua-gradient" style="
 background: #14167D;
-background: -webkit-linear-gradient(right, #14167D, #6896BA);
-background: -moz-linear-gradient(right, #14167D, #6896BA);
-background: linear-gradient(to left, #14167D, #6896BA);"></div>
+background: -webkit-linear-gradient(right, #b22024, #939598);
+background: -moz-linear-gradient(right, #b22024, #939598);
+background: linear-gradient(to left, #b22024, #939598);"></div>
       <div class="avatar mx-auto white">
         <img src="pics/pngegg (1).png" class="rounded-circle img-fluid"
           alt="avatar">

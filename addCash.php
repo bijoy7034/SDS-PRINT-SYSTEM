@@ -76,9 +76,9 @@ $time = date('h:i:s a', time());
 $nav = $_GET['set'];
 include 'nav.php';
 ?>
-<nav
+<nav style="background-color: #b22024;"
        id="main-navbar"
-       class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
+       class="navbar navbar-expand-lg navbar-dark  fixed-top"
        >
     <!-- Container wrapper -->
     <div class="container">
@@ -134,7 +134,7 @@ include 'nav.php';
   </div>
 
   <!-- Submit button -->
-  <button type="button" class="btn btn-primary" data-mdb-toggle="modal" data-mdb-target="#remove">Add Amount</button>
+  <button type="button" class="btn text-light" style="background-color: #b22024;" data-mdb-toggle="modal" data-mdb-target="#remove">Add Amount</button>
 
 
   <div class="modal fade" id="remove" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -152,7 +152,7 @@ include 'nav.php';
       </div>
       <div class="modal-footer">
         <button type="button"  class="btn btn-light" data-mdb-dismiss="modal">Close</button>
-        <button type="submit" name="add" class="btn btn-success">Add</button>
+        <button type="submit" name="add" class="btn text-light" style="background-color: #b22024;">Add</button>
         </form>
       </div>
     </div>

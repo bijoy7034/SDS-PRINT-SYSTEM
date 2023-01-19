@@ -72,9 +72,9 @@ $data3= mysqli_fetch_assoc($result3);
 $nav = $_GET['set'];
 include 'nav.php';
 ?>
-<nav
+<nav style="background-color: #b22024;"
        id="main-navbar"
-       class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
+       class="navbar navbar-expand-lg navbar-dark  fixed-top"
        >
     <!-- Container wrapper -->
     <div class="container">

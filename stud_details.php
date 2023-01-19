@@ -1,5 +1,5 @@
 <div class="card testimonial-card mt-2 mb-3">
-      <div class="card-up aqua-gradient bg-primary"></div>
+      <div style="background-color:#b22024" class="card-up aqua-gradient"></div>
       <div class="avatar mx-auto white">
         <img src="pics/pngegg (1).png" class="rounded-circle img-fluid"
           alt="avatar">

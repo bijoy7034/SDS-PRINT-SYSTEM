@@ -86,7 +86,7 @@ if(isset($_POST['submit']))
     <div>
     <center>
         <form class="border form1 border-light p-5" action="index.php" method="post">
-        <img src="pics/Saintgits logo New.png" width="100px" alt=""> <br>
+        <img src="pics/output-onlinepngtools.png" width="200px" alt=""> <br>
         <!-- <input type="email" id="defaultLoginFormEmail" class="form-control mb-4" placeholder="E-mail"> -->
             <!-- Material input -->
             <div class="md-form">
@@ -111,7 +111,7 @@ if(isset($_POST['submit']))
             </div>
             <br>
         
-            <button name="submit" class="btn btn-primary btn-block my-4" type="submit">Sign in</button>
+            <button name="submit" style="background-color: #b22024; " class="btn btn-block my-4 text-light" type="submit">Sign in</button>
         
         
         </form>

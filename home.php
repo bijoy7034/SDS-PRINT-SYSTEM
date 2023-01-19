@@ -137,8 +137,9 @@ include 'nav.php';
 
 ?>
 <nav
+style="background-color: #b22024;"
        id="main-navbar"
-       class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
+       class="navbar navbar-expand-lg navbar-dark fixed-top"
        >
     <!-- Container wrapper -->
     <div class="container">
@@ -183,10 +184,10 @@ include 'nav.php';
 
 
 <main style="margin-top: 58px">
-  <div class="pt-4">
+  <div >
     <div class="d-sm-flex justify-content-around">
         <div class="mt-4">
-            <h5 class="text-primary"><b>Enter Student Details</b></h5>
+            <h5 style="color: #b22024;"><b>Enter Student Details</b></h5>
             <small cla>Enter the details of the student and the service provided</small>
             <form action="home.php?set=home" method="post">
             <div class="row mb-3 mt-2">
@@ -199,7 +200,7 @@ include 'nav.php';
     <div class="col">
     <select  class="form-select" name="print" id="print" required aria-label="Default select example">
                     <option>Select Print Type</option>
-                     <option value="b&w">Greyscale</option>
+                     <option selected value="b&w">Greyscale</option>
                     <option value="col">Color</option>
                     <option value="others">Others</option>
                 </select>
@@ -207,7 +208,7 @@ include 'nav.php';
   </div>
                 <select required id="add_ons" name="addon" class="my-3 form-select" aria-label="Default select example">
                     <option>Add Ons</option>
-                     <option value="none">Normal</option>
+                     <option selected value="none">Normal</option>
                     <option value="hard">Hard Bind</option>
                     <option value="soft">Soft Bind</option>
                     <option value="spiral">Spiral Bind</option>
@@ -218,7 +219,7 @@ include 'nav.php';
 
       <select id="paper" name="paper" class="form-select" required aria-label="Default select example">
                     <option>Select Paper Type</option>
-                     <option value="a4">A4</option>
+                     <option selected value="a4">A4</option>
                     <option value="a3">A3</option>
                     <option value="3">Others</option>
                 </select>
@@ -236,13 +237,13 @@ include 'nav.php';
         <span class="form-label">Amount : </span> <h2 ><b>&#x20B9;</b><b><?php echo $amt ?></b> <small>.00/-</small></h2>
         
 
-                <button style="min-width: 200px;" class="btn btn-primary" name="cal"  type="submit"><b>Submit</b></button>
-                <button style="min-width: 200px;" class="btn btn-danger" onclick="reset()"  type="reset"><b><a class="text-light" href="home.php?set=home">Reset</a></b></button> <br>
+                <button  class="btn text-light" style="background-color: #b22024; min-width: 200px;" name="cal"  type="submit"><b>Submit</b></button>
+                <button  class="btn text-light" style="background-color: #b22024; min-width: 200px;" onclick="reset()"  type="reset"><b><a class="text-light" href="home.php?set=home">Reset</a></b></button> <br>
                 
 
             </form>
             
-            <button style="min-width: 400px;"  data-mdb-toggle="modal" data-mdb-target="#details" class="btn btn-success my-2" <?php if($view==0){echo 'disabled';} ?> name="submit" type="submit"><b>Save</b></button>
+            <button style="min-width: 400px; background-color: #b22024;"  data-mdb-toggle="modal" data-mdb-target="#details" class="btn btn-success my-2" <?php if($view==0){echo 'disabled';} ?> name="submit" type="submit"><b>Save</b></button>
         </div>
         <div>
         <div class="container-fluid" style="display: flex; align-items:center; justify-content:center;">
@@ -252,7 +253,7 @@ include 'nav.php';
       include "stud_details.php";
     }
     elseif($view == 0){
-      ?>  <center><img src="pics/not.svg" class="img-fluid mt-5" alt=""><br><br>
+      ?>  <center><img src="pics/output-onlinepngtools.png" class="img-fluid mt-5 pt-5" alt=""><br><br>
       <!-- <h4 class="" style="text-transform: uppercase;"><b>SDS Reprography
       </b></h4></center> -->
         
@@ -260,7 +261,7 @@ include 'nav.php';
     }
     else{
       ?> 
-      <center><img src="pics/found.svg" class="img-fluid mt-5" style="max-width: 300px;" alt=""><br><br>
+      <center><img src="pics/undraw_not_found.svg" class="img-fluid mt-5" style="max-width: 300px;" alt=""><br><br>
     <b><span class="my-3 text-danger">Student not found enter valid details..!</span></b></center>
      
      <?php

@@ -71,8 +71,9 @@ $nav = $_GET['set'];
 include 'nav.php';
 ?>
 <nav
+style="background-color: #b22024;"
        id="main-navbar"
-       class="navbar navbar-expand-lg navbar-dark bg-primary fixed-top"
+       class="navbar navbar-expand-lg navbar-dark fixed-top"
        >
     <!-- Container wrapper -->
     <div class="container">
@@ -120,7 +121,7 @@ include 'nav.php';
   <hr class="mx-5">
   <div class="d-sm-flex justify-content-between">
   <table class="table" style="max-width: 500px;">
-  <thead class="bg-primary text-light">
+  <thead style="background-color: #b22024;" class="text-light">
     <tr>
     <th><b>Services</b></th>
     <th><b>Price</b></th>
@@ -174,7 +175,7 @@ include 'nav.php';
   <input required name="rate" type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
   <label for="floatingInput">Price</label>
 </div>
-<button class="btn btn-success btn-lg" type="submit" name="submit">SAVE</button>
+<button class="btn text-light btn-lg" style="background-color: #b22024;" type="submit" name="submit">SAVE</button>
 </form>
   </div>
  
