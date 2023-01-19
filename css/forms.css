@@ -1,0 +1,27 @@
+body{
+    overflow-y: hidden;
+}
+.form-outline{
+    max-width: 500px;
+}
+
+.testimonial-card .card-up {
+    height: 100px;
+    overflow: hidden;
+    border-top-left-radius: .25rem;
+    border-top-right-radius: .25rem;
+  }
+  
+
+.testimonial-card .avatar {
+
+    width: 120px;
+    margin-top: -60px;
+    overflow: hidden;
+    border: 5px solid #fff;
+    border-radius: 50%;
+  }
+.dash_box{
+  min-width: 700px;
+
+}
