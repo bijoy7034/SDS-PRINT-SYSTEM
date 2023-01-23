@@ -303,13 +303,28 @@ style="background-color: #b22024;"
       </div>
       <div class="modal-footer">
         <button type="button"  class="btn btn-danger" data-mdb-dismiss="modal">Close</button>
-        <button type="submit" <?php if($flag==1){echo 'disabled';} ?>  class="btn btn-success"><a class="text-light" href="minucash.php?amt=<?php echo $amt; ?>&adm=<?php echo $adm; ?>">Save</a></button>
+        <button type="submit" <?php if($flag==1){echo 'disabled';} ?>  class="btn btn-success"><a class="text-light" href="minucash.php?amt=<?php echo $amt; ?>&adm=<?php echo $adm; ?>" onclick="emailjs()">Save</a></button>
         </form>
       </div>
     </div>
   </div>
 </div>
 
+<script>
+  function emailjs(params){
+    var tempParams = {
+        from_name: "ojwb",
+        to_name: "skcjb",
+        message:"Sdcn ",
+    };
+
+    emailjs.send('service_wsb6bur','template_sd26hwg',tempParams)
+    .then(function(res){
+        alert("Email send")
+        window.open('home.php','_self');
+    })
+  }
+</script>
 <script src="js/calculate.js"></script>
 <script
   type="text/javascript"
