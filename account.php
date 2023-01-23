@@ -106,7 +106,6 @@ include 'nav.php';
       <div class="navbar-nav ms-auto">
         <form action="home.php?set=home" method="post">
                   <button type="submit" name="logout" class="btn btn-outline-light" style="margin-left: 10px;">Logout</button>
-
                   </form>   
                   <?php
         if(isset($_POST['logout'])){
@@ -160,7 +159,9 @@ include 'nav.php';
         <tr>
             <td><?php echo $flag ?></td>
             <td><?php echo $products['user_id'] ?></td>
-            <td><button type="button" class="btn btn-outline-danger btn-sm btn-rounded"><a class="text-danger" href="removeAcc.php?user=<?php echo $products['user_id'] ?>">Remove</a></button></td>
+            <td><button type="button" <?php if($products['user_id'] == $loggedin_session) {
+              echo "disabled";
+            }?>  class="btn btn-outline-danger btn-sm btn-rounded"><a class="text-danger" href="removeAcc.php?user=<?php echo $products['user_id'] ?>">Remove</a></button></td>
             
         </tr>
         <?php
