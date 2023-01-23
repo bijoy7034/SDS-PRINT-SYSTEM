@@ -303,7 +303,7 @@ style="background-color: #b22024;"
       </div>
       <div class="modal-footer">
         <button type="button"  class="btn btn-danger" data-mdb-dismiss="modal">Close</button>
-        <button type="submit" <?php if($flag==1){echo 'disabled';} ?> name="submit_stud" class="btn btn-success"><a class="text-light" href="minucash.php?amt=<?php echo $amt; ?>&adm=<?php echo $adm; ?>">Save</a></button>
+        <button type="submit" <?php if($flag==1){echo 'disabled';} ?>  class="btn btn-success"><a class="text-light" href="minucash.php?amt=<?php echo $amt; ?>&adm=<?php echo $adm; ?>">Save</a></button>
         </form>
       </div>
     </div>

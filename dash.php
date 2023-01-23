@@ -162,15 +162,16 @@ include 'nav.php';
   </button>
   
 </div><button name="reset" class="btn btn-floating text-light mx-3" style="background-color: #b22024;"><a class="text-light" href="dash.php?set=dash"><i class="fas fa-undo"></i></a></button>
-    
+<button onclick="exportpdf()" class="btn btn-floating text-light" style="background-color: #b22024;" type="button"><i class="fas fa-download"></i></button>
     </div>
+   
 
   </div>
   </form>
   
   <div style="height: 450px; overflow-y: auto">
 
-<table class="table">
+<table class="table" id="example">
 <tbody class="" style="text-align: left;">
     <tr>
       <td width="100"><b>Id</b></td>
@@ -227,11 +228,72 @@ if($result_products):
 
   </div>
 </main>
-
-
+<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
+        crossorigin="anonymous"></script>
+<script src="src/tableHTMLExport.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.4.1/jspdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf-autotable/2.3.5/jspdf.plugin.autotable.min.js"></script>
 <script
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
 ></script>
+<script>
+  function exportpdf(){
+//     $("#example").tableHTMLExport({
+
+// // csv, txt, json, pdf
+// type:'csv',
+
+// // file name
+// filename:'sample1.csv'
+
+// });
+$("#example").tableHTMLExport({
+
+// csv, txt, json, pdf
+type:'csv',
+
+// file name
+filename:'sdsprintaccounts.csv',
+
+ignoreColumns: '.ignore',
+ignoreRows: '.ignore'
+
+})
+// $("#example").tableHTMLExport({
+
+// type:'csv',
+// orientation: 'p'
+
+// });
+// $("#example").tableHTMLExport({
+
+// // csv, txt, json, pdf
+// type:'pdf',
+
+// // default file name
+// filename: 'tableHTMLExport.csv',
+
+// // for csv
+// separator: ',',
+// newline: '\r\n',
+// trimContent: true,
+// quoteFields: true,
+
+// // CSS selector(s)
+// ignoreColumns: '',
+// ignoreRows: '',
+              
+// // your html table has html content?
+// htmlContent: false,
+
+// // debug
+// consoleLog: false,        
+
+// });
+}
+ 
+</script>
 </body>
 </html>
