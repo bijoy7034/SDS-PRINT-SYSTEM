@@ -12,14 +12,45 @@ if($loggedin_session==NULL) {
             echo "Go back";
             header("Location: index.php");
 }
-$sql = "SELECT * FROM `services` WHERE id = 1";
+// $sql = "SELECT * FROM `services` WHERE id = 1";
+// $res = mysqli_query($con, $sql);
+// $row = mysqli_fetch_assoc($res);
+$sql = "SELECT * FROM `service`";
 $res = mysqli_query($con, $sql);
-$row = mysqli_fetch_assoc($res);
+$name = array();
+$rate = array();
+$i = 0;
+while($row = mysqli_fetch_array($res)) {
+  $name[$i] = $row['name'];
+  $rate[$i] = $row['rate'];
+  $i = $i+1;
+}
 
-if(isset($_POST['submit'])){
+if(isset($_POST['edit'])){
   $ser = $_POST['ser'];
   $rate = $_POST['rate'];
-  $sql2 = "UPDATE `services` SET `$ser`=$rate WHERE id = 1";
+  $sql2 = "UPDATE service SET rate = '$rate' WHERE name = '$ser'";
+  $res2 = mysqli_query($con,$sql2);
+  if($res2){
+    header("location:services.php?set=service");
+  }
+}
+
+if(isset($_POST['add'])){
+  $ser = $_POST['item-name'];
+  $rate = $_POST['item-rate'];
+  echo $ser;
+  $sql2 = "INSERT INTO service VALUES ('$ser' , '$rate')";
+  $res2 = mysqli_query($con,$sql2);
+  if($res2){
+    header("location:services.php?set=service");
+  }
+}
+
+if(isset($_POST['delete'])){
+  $ser = $_POST['ser'];
+  echo $ser;
+  $sql2 = "DELETE FROM service WHERE name = '$ser'";
   $res2 = mysqli_query($con,$sql2);
   if($res2){
     header("location:services.php?set=service");
@@ -119,7 +150,7 @@ style="background-color: #b22024;"
   <div class="mx-3 pt-4">
   <center><h5>Services and Rates</h5></center>
   <hr class="mx-5">
-  <div class="d-sm-flex justify-content-between">
+  <div class="d-sm-flex justify-content-between" style="height: 0px;">
   <table class="table" style="max-width: 500px;">
   <thead style="background-color: #b22024;" class="text-light">
     <tr>
@@ -127,56 +158,46 @@ style="background-color: #b22024;"
     <th><b>Price</b></th>
     </tr>
   </thead>
-  <tr>
-    <td>Black & White (a4) </td>
-    <td><?php echo $row['b&w'] ?></td>
-  </tr>
-  <tr>
-    <td>Colour (a4) </td>
-    <td><?php echo $row['color'] ?></td>
-  </tr>
-  <tr>
-    <td>Black & White (a3)  </td>
-    <td><?php echo $row['bw&a4'] ?></td>
-  </tr>
-  <tr>
-    <td>Colour (a3)  </td>
-    <td><?php echo $row['col&a4'] ?></td>
-  </tr>
-  <tr>
-    <td>Hard Bind</td>
-    <td><?php echo $row['hardbind'] ?></td>
-  </tr>
-  <tr>
-    <td>Soft Bind  </td>
-    <td><?php echo $row['softbind'] ?></td>
-  </tr>
-  <tr>
-    <td>Spiral Bind  </td>
-    <td><?php echo $row['spiral'] ?></td>
-  </tr>
+  <tbody id='table'>
+    <tr>
+      </tr>
+      </tbody>
 </table>
 <div class="m-5 px-5" style="min-width: 500px ;">
 <h4>Change the rates by selecting the corresponding services from the dropdown</h4>
   <br>
   <form action="services.php?set=service" method="post">
-  <select name="ser" class="form-select" aria-label="Default select example">
+  <select id='select' name="ser" class="form-select" aria-label="Default select example">
   <option selected>Select Service</option>
-  <option value="b&w">Black & White (a4)</option>
-  <option value="color">Color (a4)</option>
-  <option value="bw&a4">Black & White (a3)</option>
-  <option value="col&a4">Color (a3)</option>
-  <option value="hardbind">Hard Bind</option>
-  <option value="softbind'">Soft Bind</option>
-  <option value="spiral">Spiral Bind</option>
+  
 </select> <br>
 
 <div class="form-floating mb-3">
-  <input required name="rate" type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+  <input name="rate" type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
   <label for="floatingInput">Price</label>
 </div>
-<button class="btn text-light btn-lg" style="background-color: #b22024;" type="submit" name="submit">SAVE</button>
+<button class="btn text-light btn-lg" style="background-color: #b22024;" type="submit" name="edit">SAVE</button>
+<button class="btn text-light btn-lg" style="background-color: #b22024;" type="submit" name="delete">DELETE</button>
 </form>
+<br>
+
+<br>
+
+<div class="" style="min-width: 500px ;">
+<h4>Add</h4>
+  <br>
+  <form action="services.php?set=service" method="post">
+    
+  <input id='item-name' name="item-name" class="form-control" aria-label="Default select example" placeholder="Name">
+   
+  <br>
+<div class="form-floating mb-3">
+  <input required name="item-rate" type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
+  <label for="floatingInput">Price</label>
+</div>
+<button class="btn text-light btn-lg" style="background-color: #b22024;" type="submit" name="add">SAVE</button>
+</form>
+  </div>
   </div>
  
   </div>
@@ -184,6 +205,7 @@ style="background-color: #b22024;"
 
 
   </div>
+  
 </main>
 
 
@@ -191,5 +213,27 @@ style="background-color: #b22024;"
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
 ></scripts>
+
+<script>
+  var item_name = <?php echo json_encode($name) ?>;
+  var item_rate = <?php echo json_encode($rate) ?>;
+  var totalnumber = <?php echo json_encode($i) ?>;
+  var tablee = document.getElementById('table');
+  var select = document.getElementById('select');
+  for(var i=0 ; i<totalnumber ; i++) {
+    tr = document.createElement('tr');
+    td1 = document.createElement('td');
+    td2 = document.createElement('td');
+    option = document.createElement('option');
+    td1.append(item_name[i]);
+    td2.append(item_rate[i]);
+    tr.append(td1 , td2);
+    tablee.append(tr);
+    option.append(item_name[i]);
+    select.append(option);
+
+  }
+  </script>
+
 </body>
 </html>
