@@ -40,7 +40,7 @@ if(isset($_POST['add'])){
   $ser = $_POST['item-name'];
   $rate = $_POST['item-rate'];
   echo $ser;
-  $sql2 = "INSERT INTO service VALUES ('$ser' , '$rate')";
+  $sql2 = "INSERT INTO service VALUES ('$ser' , '$rate' , 'addon')";
   $res2 = mysqli_query($con,$sql2);
   if($res2){
     header("location:services.php?set=service");

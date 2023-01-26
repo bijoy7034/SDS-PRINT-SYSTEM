@@ -16,73 +16,62 @@ if($loggedin_session==NULL) {
 $amt = 0;
 $view = 0;
 $flag =0;
+$sql11 = "SELECT * from service WHERE type = 'color'";
+$qur = mysqli_query($con,$sql11);
+$colors = array();
+$colorno = 0;
+while($row11 = mysqli_fetch_array($qur)) {
+  $colors[$colorno] = $row11['name'];
+  $colorno = $colorno + 1;
+}
+$sql11 = "SELECT * from service WHERE type = 'addon'";
+$qur = mysqli_query($con,$sql11);
+$addons = array();
+$addonno = 0;
+while($row11 = mysqli_fetch_array($qur)) {
+  $addons[$addonno] = $row11['name'];
+  $addonno = $addonno + 1;
+}
+$sql11 = "SELECT * from service WHERE type = 'paper'";
+$qur = mysqli_query($con,$sql11);
+$papers = array();
+$paperno = 0;
+while($row11 = mysqli_fetch_array($qur)) {
+  $papers[$paperno] = $row11['name'];
+  $paperno = $paperno + 1;
+}
+
+
 if(isset($_POST['cal'])){
-  $sql6 = "SELECT `id`, `b&w`, `color`, `bw&a4`, `col&a4`, `hardbind`, `softbind`, `spiral` FROM `services` WHERE id = 1";
-  $qur = mysqli_query($con,$sql6);
-  $row2 = mysqli_fetch_assoc($qur);
+  // $sql6 = "SELECT `id`, `b&w`, `color`, `bw&a4`, `col&a4`, `hardbind`, `softbind`, `spiral` FROM `services` WHERE id = 1";
+  // $qur = mysqli_query($con,$sql6);
+  // $row2 = mysqli_fetch_assoc($qur);
 
   $adm = $_POST['adm'];
   $print = $_POST['print'];
   $adons = $_POST['addon'];
   $paper = $_POST['paper'];
   $copies = $_POST['copies'];
+
+  $sql8 = "SELECT rate FROM service WHERE name = '$print'";
+  $qur = mysqli_query($con,$sql8);
+  $row = mysqli_fetch_array($qur);
+  $printrate = $row['rate'];
+  $sql8 = "SELECT rate FROM service WHERE name = '$adons'";
+  $qur = mysqli_query($con,$sql8);
+  $row = mysqli_fetch_array($qur);
+  $adonsrate = $row['rate'];
+  $sql8 = "SELECT rate FROM service WHERE name = '$paper'";
+  $qur = mysqli_query($con,$sql8);
+  $row = mysqli_fetch_array($qur);
+  $paperrate = $row['rate'];
+
   $pg = 0;
   $amt = 0;
 
-  if($print== 'b&w'){
-    if($paper == 'a4'){
-        $pg = $row2['b&w'];
-        if($adons == 'none'){
-            $amt = $pg * $copies;
-        } else if($adons == 'hard'){
-          $amt =( $pg * $copies )+ $row2['hardbind'];
-        }
-        else if($adons == 'soft'){
-          $amt =( $pg * $copies ) + $row2['softbind'];
-        }else{
-          $amt =( $pg * $copies )+$row2['spiral'];
-        }
-    }else{
-        $pg = $row2['bw&a4'];
-        if($adons == 'none'){
-          $amt =( $pg * $copies );
-        } else if($adons == 'hard'){
-          $amt =( $pg * $copies ) + $row2['hardbind'];
-        }
-        else if($adons == 'soft'){
-          $amt =( $pg * $copies ) +$row2['softbind'];
-        }else{
-          $amt =( $pg * $copies )+$row2['spiral'];
-        }
-    }
+  $amt = ( $printrate * $copies ) + $adonsrate;
 
-}else{
-    if($paper == 'a4'){
-        $pg = $row2['color'];
-        if($adons == 'none'){
-          $amt =( $pg * $copies );
-        } else if($adons == 'hard'){
-          $amt =( $pg * $copies ) + $row2['hardbind'];
-        }
-        else if($adons == 'soft'){
-          $amt =( $pg * $copies )+$row2['softbind'];
-        }else{
-          $amt =( $pg * $copies )+$row2['spiral'];
-        }
-    }else{
-        $pg = $row2['col&a4'];
-        if($adons == 'none'){
-          $amt =( $pg * $copies );
-        } else if($adons == 'hard'){
-          $amt =( $pg * $copies ) + $row2['hardbind'];
-        }
-        else if($adons == 'soft'){
-          $amt =( $pg * $copies ) +$row2['softbind'];
-        }else{
-          $amt =( $pg * $copies )+$row2['spiral'];
-        }
-    }
-}
+  
 
 $sql = "SELECT `adm_no`, `name`, `semester`, `balance`, `batch`, `email` FROM `students` WHERE adm_no = '$adm'";
 $res = mysqli_query($con, $sql);
@@ -199,29 +188,21 @@ style="background-color: #b22024;"
     </div>
     <div class="col">
     <select  class="form-select" name="print" id="print" required aria-label="Default select example">
-                    <option>Select Print Type</option>
-                     <option selected value="b&w">Greyscale</option>
-                    <option value="col">Color</option>
-                    <option value="others">Others</option>
+                    <option disabled>Select Print Type</option>
+                     
                 </select>
     </div>
   </div>
                 <select required id="add_ons" name="addon" class="my-3 form-select" aria-label="Default select example">
-                    <option>Add Ons</option>
-                     <option selected value="none">Normal</option>
-                    <option value="hard">Hard Bind</option>
-                    <option value="soft">Soft Bind</option>
-                    <option value="spiral">Spiral Bind</option>
+                    <option disabled>Add Ons</option>
 
                 </select>
                 <div class="row mb-3 mt-2">
     <div class="col">
 
       <select id="paper" name="paper" class="form-select" required aria-label="Default select example">
-                    <option>Select Paper Type</option>
-                     <option selected value="a4">A4</option>
-                    <option value="a3">A3</option>
-                    <option value="3">Others</option>
+                    <option disabled>Select Paper Type</option>
+                    
                 </select>
 
     </div>
@@ -330,5 +311,40 @@ style="background-color: #b22024;"
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
 ></script>
+<script>
+  var colortype = <?php echo json_encode($colors) ?> ;
+  var colortotalno = <?php echo json_encode($colorno) ?> ;
+  var printtype = document.getElementById('print');
+  for(var i=0;i<colortotalno;i++) {
+    option = document.createElement('option');
+    if(i==0){
+      option.selected = true;
+    }
+    option.append(colortype[i]);
+    printtype.append(option);
+  }
+  var addonn = <?php echo json_encode($addons) ?> ;
+  var addontotalno = <?php echo json_encode($addonno) ?> ;
+  var addontype = document.getElementById('add_ons');
+  for(var i=0;i<addontotalno;i++) {
+    option = document.createElement('option');
+    if(i==0){
+      option.selected = true;
+    }
+    option.append(addonn[i]);
+    addontype.append(option);
+  }
+  var paperr = <?php echo json_encode($papers) ?> ;
+  var papertotalno = <?php echo json_encode($paperno) ?> ;
+  var papertype = document.getElementById('paper');
+  for(var i=0;i<papertotalno;i++) {
+    option = document.createElement('option');
+    if(i==0){
+      option.selected = true;
+    }
+    option.append(paperr[i]);
+    papertype.append(option);
+  }
+  </script>
 </body>
 </html>
