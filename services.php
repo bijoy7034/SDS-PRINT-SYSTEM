@@ -39,7 +39,7 @@ if(isset($_POST['edit'])){
 if(isset($_POST['add'])){
   $ser = $_POST['item-name'];
   $rate = $_POST['item-rate'];
-  echo $ser;
+  // $type = $_POST['typ'];
   $sql2 = "INSERT INTO service VALUES ('$ser' , '$rate' , 'addon')";
   $res2 = mysqli_query($con,$sql2);
   if($res2){
@@ -49,9 +49,14 @@ if(isset($_POST['add'])){
 
 if(isset($_POST['delete'])){
   $ser = $_POST['ser'];
-  echo $ser;
+  if($ser == 'Black and White (A4)' || $ser == 'Black and White (A3)' || $ser == 'Color (A4)' || $ser == 'Color (A3)') {
+  $sql2 = "SELECT * from service";
+  $res2 = mysqli_query($con,$sql2);
+  }
+  else {
   $sql2 = "DELETE FROM service WHERE name = '$ser'";
   $res2 = mysqli_query($con,$sql2);
+  }
   if($res2){
     header("location:services.php?set=service");
   }
@@ -175,6 +180,8 @@ style="background-color: #b22024;"
 <div class="form-floating mb-3">
   <input name="rate" type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
   <label for="floatingInput">Price</label>
+  <br>
+  <span id='error'></span>
 </div>
 <button class="btn text-light btn-lg" style="background-color: #b22024;" type="submit" name="edit">SAVE</button>
 <button class="btn text-light btn-lg" style="background-color: #b22024;" type="submit" name="delete">DELETE</button>
@@ -189,6 +196,12 @@ style="background-color: #b22024;"
   <form action="services.php?set=service" method="post">
     
   <input id='item-name' name="item-name" class="form-control" aria-label="Default select example" placeholder="Name">
+  <br>
+  <!-- <select id='type' name="typ" class="form-select" aria-label="Default select example">
+    <option disabled>Select Type of Service</option>
+    <option selected value='addon'>Add On</option>
+    <option value='paper'>Paper</option> -->
+      </select>
    
   <br>
 <div class="form-floating mb-3">

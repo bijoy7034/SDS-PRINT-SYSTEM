@@ -53,22 +53,47 @@ if(isset($_POST['cal'])){
   $paper = $_POST['paper'];
   $copies = $_POST['copies'];
 
-  $sql8 = "SELECT rate FROM service WHERE name = '$print'";
-  $qur = mysqli_query($con,$sql8);
-  $row = mysqli_fetch_array($qur);
-  $printrate = $row['rate'];
+  if($adons=='0'){
+  $adonsrate = 0;
+  }
+  else {
   $sql8 = "SELECT rate FROM service WHERE name = '$adons'";
   $qur = mysqli_query($con,$sql8);
   $row = mysqli_fetch_array($qur);
   $adonsrate = $row['rate'];
-  $sql8 = "SELECT rate FROM service WHERE name = '$paper'";
-  $qur = mysqli_query($con,$sql8);
-  $row = mysqli_fetch_array($qur);
-  $paperrate = $row['rate'];
+  }
+  // $sql8 = "SELECT rate FROM service WHERE name = '$paper'";
+  // $qur = mysqli_query($con,$sql8);
+  // $row = mysqli_fetch_array($qur);
+  // $paperrate = $row['rate'];
 
   $pg = 0;
   $amt = 0;
 
+  if($print == 'bw' && $paper == 'A4') {
+  $sql8 = "SELECT rate FROM service WHERE name = 'Black and White (A4)'";
+  $qur = mysqli_query($con,$sql8);
+  $row = mysqli_fetch_array($qur);
+  $printrate = $row['rate'];
+  }
+  else if($print == 'bw' && $paper == 'A3') {
+  $sql8 = "SELECT rate FROM service WHERE name = 'Black and White (A3)'";
+  $qur = mysqli_query($con,$sql8);
+  $row = mysqli_fetch_array($qur);
+  $printrate = $row['rate'];
+  }
+  else if($print == 'color'&& $paper == 'A4') {
+  $sql8 = "SELECT rate FROM service WHERE name = 'Color (A4)'";
+  $qur = mysqli_query($con,$sql8);
+  $row = mysqli_fetch_array($qur);
+  $printrate = $row['rate'];
+  }
+  else {
+  $sql8 = "SELECT rate FROM service WHERE name = 'Color (A3)'";
+  $qur = mysqli_query($con,$sql8);
+  $row = mysqli_fetch_array($qur);
+  $printrate = $row['rate'];
+  }
   $amt = ( $printrate * $copies ) + $adonsrate;
 
   
@@ -189,12 +214,14 @@ style="background-color: #b22024;"
     <div class="col">
     <select  class="form-select" name="print" id="print" required aria-label="Default select example">
                     <option disabled>Select Print Type</option>
-                     
+                     <option selected value='bw'>Black and White</option>
+                     <option value='color'>Color</option>
                 </select>
     </div>
   </div>
                 <select required id="add_ons" name="addon" class="my-3 form-select" aria-label="Default select example">
                     <option disabled>Add Ons</option>
+                    <option selected value='0'>Normal</option>
 
                 </select>
                 <div class="row mb-3 mt-2">
@@ -202,7 +229,8 @@ style="background-color: #b22024;"
 
       <select id="paper" name="paper" class="form-select" required aria-label="Default select example">
                     <option disabled>Select Paper Type</option>
-                    
+                    <option selected>A4</option>
+                    <option>A3</option>
                 </select>
 
     </div>
@@ -312,39 +340,36 @@ style="background-color: #b22024;"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
 ></script>
 <script>
-  var colortype = <?php echo json_encode($colors) ?> ;
-  var colortotalno = <?php echo json_encode($colorno) ?> ;
-  var printtype = document.getElementById('print');
-  for(var i=0;i<colortotalno;i++) {
-    option = document.createElement('option');
-    if(i==0){
-      option.selected = true;
-    }
-    option.append(colortype[i]);
-    printtype.append(option);
-  }
+  // var colortype = <?php echo json_encode($colors) ?> ;
+  // var colortotalno = <?php echo json_encode($colorno) ?> ;
+  // var printtype = document.getElementById('print');
+  // for(var i=0;i<colortotalno;i++) {
+  //   option = document.createElement('option');
+  //   if(i==0){
+  //     option.selected = true;
+  //   }
+  //   option.append(colortype[i]);
+  //   printtype.append(option);
+  // }
   var addonn = <?php echo json_encode($addons) ?> ;
   var addontotalno = <?php echo json_encode($addonno) ?> ;
   var addontype = document.getElementById('add_ons');
   for(var i=0;i<addontotalno;i++) {
     option = document.createElement('option');
-    if(i==0){
-      option.selected = true;
-    }
     option.append(addonn[i]);
     addontype.append(option);
   }
-  var paperr = <?php echo json_encode($papers) ?> ;
-  var papertotalno = <?php echo json_encode($paperno) ?> ;
-  var papertype = document.getElementById('paper');
-  for(var i=0;i<papertotalno;i++) {
-    option = document.createElement('option');
-    if(i==0){
-      option.selected = true;
-    }
-    option.append(paperr[i]);
-    papertype.append(option);
-  }
+  // var paperr = <?php echo json_encode($papers) ?> ;
+  // var papertotalno = <?php echo json_encode($paperno) ?> ;
+  // var papertype = document.getElementById('paper');
+  // for(var i=0;i<papertotalno;i++) {
+  //   option = document.createElement('option');
+  //   if(i==0){
+  //     option.selected = true;
+  //   }
+  //   option.append(paperr[i]);
+  //   papertype.append(option);
+  // }
   </script>
 </body>
 </html>
