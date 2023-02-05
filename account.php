@@ -15,7 +15,10 @@ if($loggedin_session==NULL) {
 
 if(isset($_POST['submit'])){
     $pass = $_POST['pass'];
+    $repass = $_POST['reenterpass'];
     $email = $_POST['user'];
+
+    if($pass == $repass) {
 
     $encr_pass = password_hash($pass, PASSWORD_BCRYPT);
 
@@ -31,6 +34,10 @@ if(isset($_POST['submit'])){
           header('Location: account.php?set=acc');
         }
     }
+  }
+  else {
+    
+  }
 }
 
 ?>
@@ -204,7 +211,7 @@ endif;
       </div>
       <div class="modal-body">
       
-      <form action="account.php?set=acc" method="post">
+      <form action="account.php?set=acc" onSubmit="validate()" method="post">
   <!-- Email input -->
   <div class="form-outline mb-4">
     <input required type="text" id="form1Example1" name="user" class="form-control" />
@@ -213,13 +220,16 @@ endif;
 
   <!-- Password input -->
   <div class="form-outline mb-4">
-    <input required type="password" name="pass" id="form1Example2" class="form-control" />
+    <input required type="password" name="pass" id="pass1" class="form-control" />
     <label class="form-label" for="form1Example2">Create Password</label>
   </div>
   <div class="form-outline mb-4">
-    <input required type="password" id="form1Example2" class="form-control" />
+    <input required type="password" name="reenterpass" id="repass1" class="form-control" />
     <label class="form-label" for="form1Example2">Re-enter Password</label>
   </div>
+  <center>
+  <span id="msg" style="color=red"></span>
+</center>    
 
   <br>
 
@@ -239,5 +249,19 @@ endif;
   type="text/javascript"
   src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/6.0.1/mdb.min.js"
 ></script>
+<script>
+  function validate() {
+    var pass = document.getElementById('pass1').value;
+    var repass = document.getElementById('repass1').value;
+    if(pass != repass) {
+      document.getElementById('msg').innerHTML = "Password Not Match";
+      preventDefault();
+      return false;
+    }
+    else {
+      return true;
+    }
+  }
+  </script>
 </body>
 </html>
