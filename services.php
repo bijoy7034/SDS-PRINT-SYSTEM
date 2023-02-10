@@ -168,47 +168,48 @@ style="background-color: #b22024;"
       </tr>
       </tbody>
 </table>
-<div class="m-5 px-5" style="min-width: 500px ;">
+<div class="m-2 px-5" style="max-width: 600px ;">
 <h4>Change the rates by selecting the corresponding services from the dropdown</h4>
   <br>
-  <form action="services.php?set=service" method="post">
+  <form action="services.php?set=service" method="post" >
   <select id='select' name="ser" class="form-select" aria-label="Default select example">
   <option selected>Select Service</option>
   
 </select> <br>
 
-<div class="form-floating mb-3">
+<div class="form-floating mb-1">
   <input name="rate" type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
   <label for="floatingInput">Price</label>
   <br>
   <span id='error'></span>
 </div>
-<button class="btn text-light btn-lg" style="background-color: #b22024;" type="submit" name="edit">SAVE</button>
-<button class="btn text-light btn-lg" style="background-color: #b22024;" type="submit" name="delete">DELETE</button>
+<button class="btn text-light btn-sm" style="background-color: #b22024;" type="submit" name="edit">SAVE</button>
+<button class="btn text-light btn-sm" style="background-color: #b22024;" type="submit" name="delete" 
+data-mdb-toggle="tooltip"
+        data-mdb-html="true"
+         title="Select the respective service and the delete"
+>DELETE</button>
 </form>
-<br>
 
 <br>
-
 <div class="" style="min-width: 500px ;">
-<h4>Add</h4>
-  <br>
+<h4>Add Services</h4>
   <form action="services.php?set=service" method="post">
     
   <input id='item-name' name="item-name" class="form-control" aria-label="Default select example" placeholder="Name">
-  <br>
+
   <!-- <select id='type' name="typ" class="form-select" aria-label="Default select example">
     <option disabled>Select Type of Service</option>
     <option selected value='addon'>Add On</option>
-    <option value='paper'>Paper</option> -->
-      </select>
+    <option value='paper'>Paper</option>
+      </select>-->
    
   <br>
 <div class="form-floating mb-3">
   <input required name="item-rate" type="number" class="form-control" id="floatingInput" placeholder="name@example.com">
   <label for="floatingInput">Price</label>
 </div>
-<button class="btn text-light btn-lg" style="background-color: #b22024;" type="submit" name="add">SAVE</button>
+<button class="btn text-light btn-sm" style="background-color: #b22024;" type="submit" name="add">SAVE</button>
 </form>
   </div>
   </div>
