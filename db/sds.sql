@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Jan 19, 2023 at 07:15 PM
--- Server version: 5.7.31
--- PHP Version: 7.3.21
+-- Generation Time: Feb 01, 2023 at 05:08 PM
+-- Server version: 8.0.31
+-- PHP Version: 8.0.26
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -30,7 +30,7 @@ SET time_zone = "+00:00";
 DROP TABLE IF EXISTS `accounts`;
 CREATE TABLE IF NOT EXISTS `accounts` (
   `adm_no` varchar(255) NOT NULL,
-  `balance` int(100) NOT NULL,
+  `balance` int NOT NULL,
   PRIMARY KEY (`adm_no`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -40,14 +40,14 @@ CREATE TABLE IF NOT EXISTS `accounts` (
 
 INSERT INTO `accounts` (`adm_no`, `balance`) VALUES
 ('INMCA-19-037', 4),
-('INMCA-19-033', 411),
+('INMCA-19-033', 308),
 ('INMCA-19-004', 1250),
 ('INMCA-19-003', 195),
 ('INMCA-23-032', 221),
 ('INMCA-19-007', 800),
 ('INMCA-22-09', 1000),
 ('IMCA-19-029', 450),
-('INMCA-19-032', 495),
+('INMCA-19-032', 494),
 ('INMCA-19-02', 450);
 
 -- --------------------------------------------------------
@@ -59,7 +59,8 @@ INSERT INTO `accounts` (`adm_no`, `balance`) VALUES
 DROP TABLE IF EXISTS `service`;
 CREATE TABLE IF NOT EXISTS `service` (
   `name` varchar(255) NOT NULL,
-  `rate` int(100) NOT NULL,
+  `rate` int NOT NULL,
+  `type` varchar(28) NOT NULL,
   PRIMARY KEY (`name`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -67,8 +68,14 @@ CREATE TABLE IF NOT EXISTS `service` (
 -- Dumping data for table `service`
 --
 
-INSERT INTO `service` (`name`, `rate`) VALUES
-('black and white', 1);
+INSERT INTO `service` (`name`, `rate`, `type`) VALUES
+('Color (A3)', 40, 'paper'),
+('Hard Bind', 100, 'addon'),
+('Soft Bind', 30, 'addon'),
+('Spiral Bind', 50, 'addon'),
+('Color (A4)', 7, 'paper'),
+('Black and White (A4)', 1, 'paper'),
+('Black and White (A3)', 20, 'paper');
 
 -- --------------------------------------------------------
 
@@ -78,14 +85,14 @@ INSERT INTO `service` (`name`, `rate`) VALUES
 
 DROP TABLE IF EXISTS `services`;
 CREATE TABLE IF NOT EXISTS `services` (
-  `id` int(100) NOT NULL,
-  `b&w` int(100) NOT NULL,
-  `color` int(100) NOT NULL,
-  `bw&a4` int(100) NOT NULL,
-  `col&a4` int(11) NOT NULL,
-  `hardbind` int(100) NOT NULL,
-  `softbind` int(100) NOT NULL,
-  `spiral` int(100) NOT NULL,
+  `id` int NOT NULL,
+  `b&w` int NOT NULL,
+  `color` int NOT NULL,
+  `bw&a4` int NOT NULL,
+  `col&a4` int NOT NULL,
+  `hardbind` int NOT NULL,
+  `softbind` int NOT NULL,
+  `spiral` int NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
@@ -106,8 +113,8 @@ DROP TABLE IF EXISTS `students`;
 CREATE TABLE IF NOT EXISTS `students` (
   `adm_no` varchar(255) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `semester` int(100) NOT NULL,
-  `balance` int(100) NOT NULL,
+  `semester` int NOT NULL,
+  `balance` int NOT NULL,
   `batch` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   PRIMARY KEY (`adm_no`)
@@ -137,13 +144,13 @@ INSERT INTO `students` (`adm_no`, `name`, `semester`, `balance`, `batch`, `email
 
 DROP TABLE IF EXISTS `transactions`;
 CREATE TABLE IF NOT EXISTS `transactions` (
-  `t_id` int(100) NOT NULL AUTO_INCREMENT,
-  `amt` int(100) NOT NULL,
+  `t_id` int NOT NULL AUTO_INCREMENT,
+  `amt` int NOT NULL,
   `time` varchar(255) NOT NULL,
   `date` date NOT NULL,
   `adm_no` varchar(255) NOT NULL,
   PRIMARY KEY (`t_id`)
-) ENGINE=MyISAM AUTO_INCREMENT=61 DEFAULT CHARSET=latin1;
+) ENGINE=MyISAM AUTO_INCREMENT=63 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `transactions`
@@ -207,7 +214,9 @@ INSERT INTO `transactions` (`t_id`, `amt`, `time`, `date`, `adm_no`) VALUES
 (57, -1, '11:30:43 pm', '2023-01-19', 'INMCA-19-037'),
 (58, -3, '12:04:37 am', '2023-01-19', 'INMCA-19-033'),
 (59, -5, '12:17:20 am', '2023-01-19', 'INMCA-19-037'),
-(60, -5, '12:29:06 am', '2023-01-19', 'INMCA-19-033');
+(60, -5, '12:29:06 am', '2023-01-19', 'INMCA-19-033'),
+(61, -1, '06:40:07 pm', '2023-01-26', 'INMCA-19-032'),
+(62, -103, '08:05:48 pm', '2023-01-27', 'INMCA-19-033');
 
 -- --------------------------------------------------------
 
