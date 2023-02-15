@@ -207,7 +207,7 @@ style="background-color: #b22024;"
             <div class="row mb-3 mt-2">
     <div class="col">
       <div class="form-outline">
-        <input  type="text" name="adm" id="admis_no" class="form-control" />
+        <input required type="text" name="adm" id="admis_no" class="form-control" />
         <label class="form-label" for="form3Example1">Admission No.</label>
       </div>
     </div>
