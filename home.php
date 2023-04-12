@@ -55,7 +55,7 @@ if(isset($_POST['cal'])){
   // $qur = mysqli_query($con,$sql6);
   // $row2 = mysqli_fetch_assoc($qur);
 
-  $adm = $_POST['adm'];
+  $adm = $_POST['admis_no'];
   $print = $_POST['print'];
   $adons = $_POST['addon'];
   $paper = $_POST['paper'];
@@ -214,9 +214,14 @@ style="background-color: #b22024;"
             <form action="home.php?set=home" method="post">
             <div class="row mb-3 mt-2">
     <div class="col">
-    <select  class="form-select" name="adm" id="admis_no" required aria-label="Default select example">
-                    <option disabled selected>Admission Number</option>
-                </select>
+    <div class="form-outline">
+    <input required type="text" id="admis_no" name="admis_no" list="adm" class="form-control"/>
+    <label class="form-label" for="form3Example1">Admission No.</label>
+<datalist id="adm">
+<option disabled selected>Admission Number</option>
+</datalist>
+</div>
+    
       <!-- <div class="form-outline">
         <input required type="text" name="adm" id="admis_no" class="form-control" />
         <label class="form-label" for="form3Example1">Admission No.</label>
@@ -372,7 +377,7 @@ style="background-color: #b22024;"
   }
   var studentsdata = <?php echo json_encode($students_data) ?>;
   var studentno = <?php echo json_encode($studentsno) ?> ;
-  var studenttype = document.getElementById('admis_no');
+  var studenttype = document.getElementById('adm');
   for(var i=0;i<studentno;i++) {
     console.log("ok");
     option = document.createElement('option');
