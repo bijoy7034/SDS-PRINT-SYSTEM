@@ -40,6 +40,14 @@ while($row11 = mysqli_fetch_array($qur)) {
   $papers[$paperno] = $row11['name'];
   $paperno = $paperno + 1;
 }
+$sql11 = "SELECT * from students";
+$qur = mysqli_query($con,$sql11);
+$students_data = array();
+$studentsno = 0;
+while($row11 = mysqli_fetch_array($qur)) {
+  $students_data[$studentsno] = $row11['adm_no'];
+  $studentsno = $studentsno + 1;
+}
 
 
 if(isset($_POST['cal'])){
@@ -206,10 +214,13 @@ style="background-color: #b22024;"
             <form action="home.php?set=home" method="post">
             <div class="row mb-3 mt-2">
     <div class="col">
-      <div class="form-outline">
+    <select  class="form-select" name="adm" id="admis_no" required aria-label="Default select example">
+                    <option disabled selected>Admission Number</option>
+                </select>
+      <!-- <div class="form-outline">
         <input required type="text" name="adm" id="admis_no" class="form-control" />
         <label class="form-label" for="form3Example1">Admission No.</label>
-      </div>
+      </div> -->
     </div>
     <div class="col">
     <select  class="form-select" name="print" id="print" required aria-label="Default select example">
@@ -358,6 +369,15 @@ style="background-color: #b22024;"
     option = document.createElement('option');
     option.append(addonn[i]);
     addontype.append(option);
+  }
+  var studentsdata = <?php echo json_encode($students_data) ?>;
+  var studentno = <?php echo json_encode($studentsno) ?> ;
+  var studenttype = document.getElementById('admis_no');
+  for(var i=0;i<studentno;i++) {
+    console.log("ok");
+    option = document.createElement('option');
+    option.append(studentsdata[i]);
+    studenttype.append(option);
   }
   // var paperr = <?php echo json_encode($papers) ?> ;
   // var papertotalno = <?php echo json_encode($paperno) ?> ;
